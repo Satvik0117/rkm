@@ -11,10 +11,9 @@ mongoose.connect('mongodb://localhost/rank-2');
 var AthleteSchema=new mongoose.Schema({
 			name 		    :String,
 			weight          :String,
-			fed             :String,
 			height          :String,
-			coach           :String,
             insta           :String,
+            coach           :String,
             achievement     :String,
             contact         :String           
 });
@@ -60,15 +59,16 @@ app.get('/admin',function(req,res){
 
 app.post('/registration-form-athlete',function(req,res){
 	var newAth=new Athlete({
-		name 		    	:req.body.name,
+			name 		    :req.body.name,
 			weight          :req.body.weight,
-			fed             :req.body.fed,
 			height          :req.body.height,
 			coach           :req.body.coach,
             insta           :req.body.insta,
             achievement     :req.body.achievement,
             contact         :req.body.contact  
 	});
+	console.log(newAth);
+
 	newAth.save()
     .then(item => {
       res.redirect("/registration-form-athlete");
